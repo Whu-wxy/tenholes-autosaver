@@ -8,11 +8,11 @@ from lxml.html import fromstring, tostring, iterlinks
 from lxml import etree
 
 # User Config
-# root_path = "G:/tenholes/布鲁斯口琴系统课程（上）/"           # for example
-# course_url = "http://www.tenholes.com/lessons/list?cid=3"   # for example
-root_path = "G:/tenholes/布鲁斯口琴系统课程（下）/"
-course_url = "http://www.tenholes.com/lessons/list?cid=15"
-ten_auth1 = r"xxx-xxx-xxx"
+root_path = "D:/tenholes_tutorials/布鲁斯口琴系统课程（上）/"           # for example
+course_url = "http://www.tenholes.com/lessons/list?cid=3"   # for example
+# root_path = "D:/tenholes_tutorials/布鲁斯口琴系统课程（下）/"
+# course_url = "http://www.tenholes.com/lessons/list?cid=15"
+ten_auth1 = r"XtZu1MgXZp0mS1Iw0YbolDUwNzZkNTQzZWI5YmE5NzZhYzhjZDhlZTFiNWYzNTJjMjlhZTU5YjlhYjRiZTgxMzU3MTQ4NGJlNzMxMmE2ZjG%2BjPAPqxgbpTVOLsRkZj9IHb2x2r7BIrraW8%2FyvbRtGrC0UbdV0I6gxeZU6NzCq7RMWV0D576DiRdRqmvDijw3; Hm_lvt_2f7f7866ed2b0addd933476e1018bb2a=1659614716,1659697085,1659786194,1659873820; Hm_lpvt_2f7f7866ed2b0addd933476e1018bb2a=1659881103"
 
 # Const Variables
 base_url = "http://www.tenholes.com"
