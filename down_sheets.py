@@ -9,8 +9,8 @@ from lxml import etree
 
 # User Config
 # root_path = "G:/tenholes/"   # for example
-root_path = "G:/tenholes/"
-ten_auth1 = r"xxx-xxx-xxx"
+root_path = "D:\\tenholes_sheets\\"
+ten_auth1 = r"XtZu1MgXZp0mS1Iw0YbolDUwNzZkNTQzZWI5YmE5NzZhYzhjZDhlZTFiNWYzNTJjMjlhZTU5YjlhYjRiZTgxMzU3MTQ4NGJlNzMxMmE2ZjG%2BjPAPqxgbpTVOLsRkZj9IHb2x2r7BIrraW8%2FyvbRtGrC0UbdV0I6gxeZU6NzCq7RMWV0D576DiRdRqmvDijw3; 4615678num=1; _csrf-frontend=b1701e742e6c2ceaf7b98cbfcb94ec1e80482dd8d21c7a6a57b3c01478165d76a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22rGMZfH8Bfdsvsln0dNUlE9B3HQSnXJgF%22%3B%7D; Hm_lvt_2f7f7866ed2b0addd933476e1018bb2a=1662725994,1662981000,1663146705,1663944231; Hm_lpvt_2f7f7866ed2b0addd933476e1018bb2a=1663945245"
 
 # Const Variables
 base_url = "http://www.tenholes.com"
@@ -129,6 +129,10 @@ def download_sheets(urls):
         types = div.xpath("./span[1]/text()")[0]  # music sheet type
         # download sheet
         file_path = root_path + f"/{types}/{name}/"
+
+        # name_filter = ['Tears In Heaven', '世界的约束（哈尔的移动城堡）半音阶口琴版', '一生何求', '世界的约束（哈尔的移动城堡）Paddy 口琴版']
+        # if name not in (name_filter):
+        #     continue
         if not os.path.exists(file_path):
             os.mkdir(file_path)
             print(f"\nStart downloading ---> {name}")
@@ -140,6 +144,9 @@ if __name__ == "__main__":
         os.makedirs(root_path + "/布鲁斯口琴")
         os.makedirs(root_path + "/半音阶口琴")
     print("Retrieving Sheets Info ...")
-    max_page = get_max_page()
-    sheets_links = get_all_sheet(max_page)
-    download_sheets(sheets_links)
+    # max_page = get_max_page()
+    # sheets_links = get_all_sheet(max_page)
+    # # ['/tabs/view?id=421', '/tabs/view?id=420',]
+    # download_sheets(sheets_links)
+
+    download_sheets(['/tabs/view?id=721', '/tabs/view?id=720', '/tabs/view?id=719'])
