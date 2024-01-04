@@ -8,8 +8,7 @@ from lxml.html import fromstring, tostring, iterlinks
 from lxml import etree
 
 # User Config
-# root_path = "G:/tenholes/"   # for example
-root_path = "D:\\tenholes_sheets\\"
+root_path = "D:\\tenholes\\tenholes_sheets\\"
 ten_auth1 = r"XtZu1MgXZp0mS1Iw0YbolDUwNzZkNTQzZWI5YmE5NzZhYzhjZDhlZTFiNWYzNTJjMjlhZTU5YjlhYjRiZTgxMzU3MTQ4NGJlNzMxMmE2ZjG%2BjPAPqxgbpTVOLsRkZj9IHb2x2r7BIrraW8%2FyvbRtGrC0UbdV0I6gxeZU6NzCq7RMWV0D576DiRdRqmvDijw3; 4615678num=1; _csrf-frontend=b1701e742e6c2ceaf7b98cbfcb94ec1e80482dd8d21c7a6a57b3c01478165d76a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22rGMZfH8Bfdsvsln0dNUlE9B3HQSnXJgF%22%3B%7D; Hm_lvt_2f7f7866ed2b0addd933476e1018bb2a=1662725994,1662981000,1663146705,1663944231; Hm_lpvt_2f7f7866ed2b0addd933476e1018bb2a=1663945245"
 
 # Const Variables
@@ -32,7 +31,16 @@ headers = {
 s = requests.session()
 s.cookies["ten_auth1"] = ten_auth1
 
-
+filt_list = []
+for i in os.listdir(root_path + "/布鲁斯口琴"):
+    path = os.path.join(root_path + "/布鲁斯口琴", i)
+    if os.path.isdir(path):
+        filt_list.append(i)
+for i in os.listdir(root_path + "/半音阶口琴"):
+    path = os.path.join(root_path + "/布鲁斯口琴", i)
+    if os.path.isdir(path):
+        filt_list.append(i)
+print(filt_list[:40])
 def get_max_page():
     r = s.get(target_url, params={"page": 1000}, headers=headers, timeout=10)
     html = etree.HTML(r.text)
@@ -130,9 +138,8 @@ def download_sheets(urls):
         # download sheet
         file_path = root_path + f"/{types}/{name}/"
 
-        # name_filter = ['Tears In Heaven', '世界的约束（哈尔的移动城堡）半音阶口琴版', '一生何求', '世界的约束（哈尔的移动城堡）Paddy 口琴版']
-        # if name not in (name_filter):
-        #     continue
+        if name not in (filt_list):
+            continue
         if not os.path.exists(file_path):
             os.mkdir(file_path)
             print(f"\nStart downloading ---> {name}")
@@ -144,9 +151,11 @@ if __name__ == "__main__":
         os.makedirs(root_path + "/布鲁斯口琴")
         os.makedirs(root_path + "/半音阶口琴")
     print("Retrieving Sheets Info ...")
+    # 1.download all
     # max_page = get_max_page()
     # sheets_links = get_all_sheet(max_page)
     # # ['/tabs/view?id=421', '/tabs/view?id=420',]
     # download_sheets(sheets_links)
 
+    # 2.download select
     download_sheets(['/tabs/view?id=721', '/tabs/view?id=720', '/tabs/view?id=719'])
